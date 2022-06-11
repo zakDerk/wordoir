@@ -1,0 +1,126 @@
+<html>
+	<head>
+    <title>Wordoir.com - your daily 5 words puzzle</title>
+    <meta property="og:image" content="logo0.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="500">
+    <meta name=viewport content='width=700'>
+		<meta name="description" content="How good are you in the English language. This is wordoir, a guessing game where you try to find out the letters of
+    5 words, each word contains 5 non-repeating letters hidden.this game prompts a puzzle each day,it helps you
+    by showing similar letters of your guess in the other words rows, if they match.
+    this game was inspired by the famous game wordle, thanks to the genius wardle i was thinking at work opener
+    day, and thought maybe i could use my humble js experience to build my second game after flashword which
+    i lunched through firebase(doesn't have a its own domain name but it works fine.
+    ).
+    So if you are interested in writing, reading or word puzzles in general, try Wordoir. ">
+	</head>
+  <style>
+    body{
+	  text-align: center;
+      margin: auto;	
+	}
+	#start{
+	  color: rgb(255, 242, 0);
+	  font-size: 36px;
+	  font-family: monospace;
+	  border-radius: 6px;
+	  
+	  
+	  border: gray;
+	  background-color: rgb(163, 5, 163);
+	}
+	#start:hover{
+	  background-color: lightgreen;
+	  color: white;
+	}
+	#frontier{
+	   text-align: center;
+	   margin: 70px;
+	}
+    #ruleList,#list{
+		font-family: monospace;
+		font-size: 25px;
+		color:rgb(255, 255, 255);
+		text-align: left;
+		font-weight: solid;
+        margin: 0px;
+
+	}
+	#rules::backdrop{
+		background: linear-gradient(45deg, red, blueviolet);
+		opacity: .3;
+	}
+	#rules{
+		background-color: darkgoldenrod;
+		text-align: left;
+		margin-top: 20px;
+		box-shadow: 0 0 1 1;
+		max-width: 800px;
+        border-radius: 10px;
+        max-width: 800px;
+        max-height: 600px;
+	}
+    #span1{
+		font-weight: bold;
+        color:rgb(34, 34, 34);
+	}
+    #close{
+		font-size: 21px;
+		background-color: rgb(255, 255, 255);
+        border: 0px;
+	}
+    #ruleShower:hover{
+        color:aliceblue;
+        background-color: darkgoldenrod;
+    }
+    #ruleShower{
+        color: rgb(0, 0, 0);
+        font-size: 25px;
+        font-family: monospace;
+        background-color:rgb(255, 228, 118);
+        border: 0px;
+    }
+	
+  </style>
+  <body style="background-image: url('back2.jpg');">
+
+    <dialog id="rules">
+        <p id="ruleList">The Wordoir rules:</p>
+        <p id="ruleList">to win this daily puzzle, try to guess all the hidden 5 words. Here is how:</p>
+        <li id="list">Choose a row to type in by clicking on it, and guess the 5 letter word
+        with no repeating letters.</li>
+        <li id="list">The right letters will show up with a grean background.</li>
+        <li id="list">To help you, if the letters of the word you guessed</br>
+        do also belong to the other 4 words, the letters will show up on the other rows.</li>
+        <li id="list">To make it more challenging, some of the letters that were shown to help you,
+        may disapear unless you guessed them yourself.</li>
+        <li id="list">Green means right, but Even if some of the letters are shown,
+        you have to type a complete 5 letter word with no repeating letters at each guess, 
+        look at <span id="span1">'Guess displayed here'</span> above the grid.</li>
+        <p id="ruleList">A good tip would be to try your guesses on different rows!</p>
+        <p id="ruleList">GOOD LUCK</p>
+        </br>
+        <button id="close" onclick="closer()">Close</button>
+
+    </dialog>
+
+    <image id ='frontier' src ='logo3.png' width='600px' ></br>
+	<a href='game.html' ><button id = 'start' >START</button></a>
+    </br></br>
+    <button id="ruleShower" onclick="opener()" >Rules</button>
+
+    <script>
+		function closer(){
+			document.getElementById('rules').close();
+            //document.getElementById('newGame').showModal(); 
+		}
+        function opener(){
+			document.getElementById('rules').showModal();
+		}
+	  
+	    
+	    
+	</script>
+	
+  </body>
+</html>
