@@ -11164,19 +11164,19 @@
         //this is to display the message that you have completed the puzzle:
         let today = new Date();
         let day = 0;
-        let guessNum = localStorage.getItem('guessNum');
+        let guessNum = localStorage.getItem('guessNumF');
 
-        if(today.getFullYear() != localStorage.getItem('puzzleYear') && today.getMonth() != localStorage.getItem('puzzleMonth')  && today.getDate() != localStorage.getItem('puzzleDay') ){
+        if(today.getFullYear() != localStorage.getItem('puzzleYearF') && today.getMonth() != localStorage.getItem('puzzleMonthF')  && today.getDate() != localStorage.getItem('puzzleDayF') ){
             guessNum = 0;
         }
         document.getElementById('ent').addEventListener('click', ()=>{
-            if(guessNum != localStorage.getItem('guessNum') ){
+            if(guessNum != localStorage.getItem('guessNumF') ){
                 guessNum += 1;
 
             }
             
             
-            document.getElementById('guesses').innerHTML = localStorage.getItem('guessNum');
+            document.getElementById('guesses').innerHTML = localStorage.getItem('guessNumF');
                
             
             
@@ -11184,7 +11184,7 @@
         
         window.addEventListener('keyup', (eventEnter1)=>{
             if(eventEnter1.key == 'Enter'){
-                if(guessNum != localStorage.getItem('guessNum')){
+                if(guessNum != localStorage.getItem('guessNumF')){
                     guessNum += 1;
 
                 }
@@ -11217,8 +11217,8 @@
                         document.getElementById('message2').showModal();
                     }, 3000);
 
-                    localStorage.setItem('guessNum', guessNum);
-                    document.getElementById('guesses').innerHTML = localStorage.getItem('guessNum');
+                    localStorage.setItem('guessNumF', guessNum);
+                    document.getElementById('guesses').innerHTML = localStorage.getItem('guessNumF');
                     //guessNum -= 1;
                     
 
@@ -11226,15 +11226,15 @@
                     day = today.getDate();
                     month = today.getMonth();
                     year = today.getFullYear();
-                    localStorage.setItem('puzzleDay', day);
-                    localStorage.setItem('puzzleMonth', month);
-                    localStorage.setItem('puzzleYear', year);
+                    localStorage.setItem('puzzleDayF', day);
+                    localStorage.setItem('puzzleMonthF', month);
+                    localStorage.setItem('puzzleYearF', year);
 
-                    localStorage.setItem('word1', word1);
-                    localStorage.setItem('word2', word2);
-                    localStorage.setItem('word3', word3);
-                    localStorage.setItem('word4', word4);
-                    localStorage.setItem('word5', word5);
+                    localStorage.setItem('word1F', word1);
+                    localStorage.setItem('word2F', word2);
+                    localStorage.setItem('word3F', word3);
+                    localStorage.setItem('word4F', word4);
+                    localStorage.setItem('word5F', word5);
                     
                     document.getElementById('reminder1').style.visibility = 'hidden';
                     document.getElementById('message').style.visibility = 'hidden';
@@ -11326,8 +11326,8 @@
                         document.getElementById('message2').showModal();
                     }, 3000);
 
-                    localStorage.setItem('guessNum', guessNum);
-                    document.getElementById('guesses').innerHTML = localStorage.getItem('guessNum');
+                    localStorage.setItem('guessNumF', guessNum);
+                    document.getElementById('guesses').innerHTML = localStorage.getItem('guessNumF');
                 
                     
 
@@ -11335,15 +11335,15 @@
                     day = today.getDate();
                     month = today.getMonth();
                     year = today.getFullYear();
-                    localStorage.setItem('puzzleDay', day);
-                    localStorage.setItem('puzzleMonth', month);
-                    localStorage.setItem('puzzleYear', year);
+                    localStorage.setItem('puzzleDayF', day);
+                    localStorage.setItem('puzzleMonthF', month);
+                    localStorage.setItem('puzzleYearF', year);
                     
-                    localStorage.setItem('word1', word1);
-                    localStorage.setItem('word2', word2);
-                    localStorage.setItem('word3', word3);
-                    localStorage.setItem('word4', word4);
-                    localStorage.setItem('word5', word5);
+                    localStorage.setItem('word1F', word1);
+                    localStorage.setItem('word2F', word2);
+                    localStorage.setItem('word3F', word3);
+                    localStorage.setItem('word4F', word4);
+                    localStorage.setItem('word5F', word5);
                     
                     document.getElementById('reminder1').style.display = 'none';
                     document.getElementById('message').style.display = 'none';
@@ -11407,45 +11407,45 @@
 
         }, 3000);
                 
-        let word01 = '';
-        let word02 = '';
-        let word03 = '';
-        let word04 = '';
-        let word05 = '';
+        let word001 = '';
+        let word002 = '';
+        let word003 = '';
+        let word004 = '';
+        let word005 = '';
         setInterval(()=>{
             today = new Date();
-            if(today.getFullYear() == localStorage.getItem('puzzleYear') && today.getMonth() == localStorage.getItem('puzzleMonth')  && today.getDate() == localStorage.getItem('puzzleDay') ){
-                word01 = localStorage.getItem('word1');
-                word02 = localStorage.getItem('word2');
-                word03 = localStorage.getItem('word3');
-                word04 = localStorage.getItem('word4');
-                word05 = localStorage.getItem('word5');
+            if(today.getFullYear() == localStorage.getItem('puzzleYearF') && today.getMonth() == localStorage.getItem('puzzleMonthF')  && today.getDate() == localStorage.getItem('puzzleDayF') ){
+                word001 = localStorage.getItem('word1F');
+                word002 = localStorage.getItem('word2F');
+                word003 = localStorage.getItem('word3F');
+                word004 = localStorage.getItem('word4F');
+                word005 = localStorage.getItem('word5F');
                 
-                document.getElementById('1').innerHTML = word01[0];
-                document.getElementById('2').innerHTML = word01[1];
-                document.getElementById('3').innerHTML = word01[2];
-                document.getElementById('4').innerHTML = word01[3];
-                document.getElementById('5').innerHTML = word01[4];
-                document.getElementById('6').innerHTML = word02[0];
-                document.getElementById('7').innerHTML = word02[1];
-                document.getElementById('8').innerHTML = word02[2];
-                document.getElementById('9').innerHTML = word02[3];
-                document.getElementById('10').innerHTML = word02[4];
-                document.getElementById('11').innerHTML = word03[0];
-                document.getElementById('12').innerHTML = word03[1];
-                document.getElementById('13').innerHTML = word03[2];
-                document.getElementById('14').innerHTML = word03[3];
-                document.getElementById('15').innerHTML = word03[4];
-                document.getElementById('16').innerHTML = word04[0];
-                document.getElementById('17').innerHTML = word04[1];
-                document.getElementById('18').innerHTML = word04[2];
-                document.getElementById('19').innerHTML = word04[3];
-                document.getElementById('20').innerHTML = word04[4];
-                document.getElementById('21').innerHTML = word05[0];
-                document.getElementById('22').innerHTML = word05[1];
-                document.getElementById('23').innerHTML = word05[2];
-                document.getElementById('24').innerHTML = word05[3];
-                document.getElementById('25').innerHTML = word05[4];
+                document.getElementById('1').innerHTML = word001[0];
+                document.getElementById('2').innerHTML = word001[1];
+                document.getElementById('3').innerHTML = word001[2];
+                document.getElementById('4').innerHTML = word001[3];
+                document.getElementById('5').innerHTML = word001[4];
+                document.getElementById('6').innerHTML = word002[0];
+                document.getElementById('7').innerHTML = word002[1];
+                document.getElementById('8').innerHTML = word002[2];
+                document.getElementById('9').innerHTML = word002[3];
+                document.getElementById('10').innerHTML = word002[4];
+                document.getElementById('11').innerHTML = word003[0];
+                document.getElementById('12').innerHTML = word003[1];
+                document.getElementById('13').innerHTML = word003[2];
+                document.getElementById('14').innerHTML = word003[3];
+                document.getElementById('15').innerHTML = word003[4];
+                document.getElementById('16').innerHTML = word004[0];
+                document.getElementById('17').innerHTML = word004[1];
+                document.getElementById('18').innerHTML = word004[2];
+                document.getElementById('19').innerHTML = word004[3];
+                document.getElementById('20').innerHTML = word004[4];
+                document.getElementById('21').innerHTML = word005[0];
+                document.getElementById('22').innerHTML = word005[1];
+                document.getElementById('23').innerHTML = word005[2];
+                document.getElementById('24').innerHTML = word005[3];
+                document.getElementById('25').innerHTML = word005[4];
 
                 document.getElementById('1').style.backgroundColor = 'rgb(46, 199, 92)';
                 document.getElementById('2').style.backgroundColor = 'rgb(46, 199, 92)';
@@ -11477,7 +11477,7 @@
                 }, 3000);
                 
                 clearInterval(gifter);
-                
+                localStorqge.clear();
             
                 
              
@@ -11485,7 +11485,7 @@
         },10);
 
         today = new Date();
-        if(today.getFullYear() != localStorage.getItem('puzzleYear') && today.getMonth() != localStorage.getItem('puzzleMonth')  && today.getDate() != localStorage.getItem('puzzleDay') ){
+        if(today.getFullYear() != localStorage.getItem('puzzleYearF') && today.getMonth() != localStorage.getItem('puzzleMonthF')  && today.getDate() != localStorage.getItem('puzzleDayF') ){
             
             localStorage.clear();
             guessNum = 0;
