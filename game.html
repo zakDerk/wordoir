@@ -268,8 +268,8 @@
     }
     
     #entdel::backdrop{
-        background: linear-gradient(45deg, blue, rgb(219, 9, 9));
-		opacity: .1;
+        background: linear-gradient(45deg, blue, rgb(238, 5, 5));
+        opacity: .3;
     }
 
     #msg0, #ed{
@@ -562,6 +562,15 @@
             document.getElementById('reminder1').close();
 
         },9500)
+	    
+	setTimeout(()=>{
+            document.getElementById('entdel').showModal();
+
+        },17000)
+        setTimeout(()=>{
+            document.getElementById('entdel').close();
+
+        },24000)
 
         
 
