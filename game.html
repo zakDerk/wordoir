@@ -257,7 +257,7 @@
         max-width: 400px;
         
     }
-    #message{
+    #message, #entdel{
         border: 0px;
         font-size: 35px;
         font-weight: 520;
@@ -267,7 +267,12 @@
         max-width: 400px;
     }
     
-    #msg0{
+    #entdel::backdrop{
+        background: linear-gradient(45deg, blue, rgb(219, 9, 9));
+		opacity: .1;
+    }
+
+    #msg0, #ed{
 		color: rgb(53, 235, 108);
 		font-weight: bold;
         margin: 0px;
@@ -392,6 +397,13 @@
         <p id="msg3">A new Wordoir is ready!</p>
         <button id="start" onclick="startCloser()">start</button>
      </dialog>
+
+     <dialog id="entdel">
+        <p id="ed">Don't forget!</br>hit enter <image src="ent.png" width="50px"></image> after typing each guess.</br>the delete button <image src="del.png" width="42px"></image>
+        deletes the whole guess</p>
+        
+     </dialog>
+     
 
      
 
