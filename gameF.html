@@ -257,7 +257,7 @@
         max-width: 400px;
         
     }
-    #message{
+    #message, #entdel{
         border: 0px;
         font-size: 35px;
         font-weight: 520;
@@ -267,7 +267,12 @@
         max-width: 400px;
     }
     
-    #msg0{
+    #entdel::backdrop{
+        background: linear-gradient(45deg, blue, rgb(219, 9, 9));
+		opacity: .3;
+    }
+
+    #msg0, #ed{
 		color: rgb(53, 235, 108);
 		font-weight: bold;
         margin: 0px;
@@ -388,6 +393,12 @@
      <dialog id="newGame">
         <p id="msg3">Un nouveau Wordoir est prêt pour jouer!</p>
         <button id="start" onclick="startCloser()">Commencer</button>
+     </dialog>
+
+     <dialog id="entdel">
+        <p id="ed">N'oublier pas!</br>Cliquer 'entrer' <image src="ent.png" width="50px"></image> après chaque supposition.</br>la touche 'suprimer' <image src="del.png" width="42px"></image>
+        suprime toute la supposition</p>
+        
      </dialog>
 
      
@@ -549,6 +560,15 @@
             document.getElementById('reminder1').close();
 
         },9500)
+	    
+	setTimeout(()=>{
+            document.getElementById('entdel').showModal();
+
+        },17000)
+        setTimeout(()=>{
+            document.getElementById('entdel').close();
+
+        },24000);
 
         
 
