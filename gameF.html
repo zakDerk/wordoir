@@ -768,6 +768,144 @@
         //word4 = 'FLOAT';
         //word5 = 'GRUNT';
         
+	let executed1 = true;
+        let executed2 = true;
+        let executed3 = true;
+        let executed4 = true;
+        let executed5 = true;
+        window.addEventListener('keydown', function soloAnim(event){
+                if(event.key === 'Enter'){
+                    setTimeout(()=>{
+
+                    
+                        //THIS IS TO ANIMATE FIRST ROW IF IT'S ALL GREEN:
+                        if( document.getElementById('1').style.backgroundColor == 'rgb(46, 199, 92)'
+                        && document.getElementById('2').style.backgroundColor == 'rgb(46, 199, 92)'
+                        && document.getElementById('3').style.backgroundColor == 'rgb(46, 199, 92)'
+                        && document.getElementById('4').style.backgroundColor == 'rgb(46, 199, 92)'
+                        && document.getElementById('5').style.backgroundColor == 'rgb(46, 199, 92)'
+                        && executed1 == true){
+                            
+                            document.getElementById('1').style.animation = 'shaky 0.5s infinite';
+                            document.getElementById('2').style.animation = 'shaky 0.5s infinite';
+                            document.getElementById('3').style.animation = 'shaky 0.5s infinite';
+                            document.getElementById('4').style.animation = 'shaky 0.5s infinite';
+                            document.getElementById('5').style.animation = 'shaky 0.5s infinite';
+                            
+                            setTimeout(function anim(){
+                                document.getElementById('1').style.animation = 'shaky 0s infinite';
+                                document.getElementById('2').style.animation = 'shaky 0s infinite';
+                                document.getElementById('3').style.animation = 'shaky 0s infinite';
+                                document.getElementById('4').style.animation = 'shaky 0s infinite';
+                                document.getElementById('5').style.animation = 'shaky 0s infinite';
+                                
+                            },1000);
+                            executed1 = false;
+                        }
+                    
+
+                        //THIS IS TO ANIMATE SECOND ROW IF IT'S ALL GREEN:
+                        if( document.getElementById('6').style.backgroundColor == 'rgb(46, 199, 92)'
+                        && document.getElementById('7').style.backgroundColor == 'rgb(46, 199, 92)'
+                        && document.getElementById('8').style.backgroundColor == 'rgb(46, 199, 92)'
+                        && document.getElementById('9').style.backgroundColor == 'rgb(46, 199, 92)'
+                        && document.getElementById('10').style.backgroundColor == 'rgb(46, 199, 92)'
+                        && executed2 == true){
+                            
+                            document.getElementById('6').style.animation = 'shaky 0.5s infinite';
+                            document.getElementById('7').style.animation = 'shaky 0.5s infinite';
+                            document.getElementById('8').style.animation = 'shaky 0.5s infinite';
+                            document.getElementById('9').style.animation = 'shaky 0.5s infinite';
+                            document.getElementById('10').style.animation = 'shaky 0.5s infinite';
+                            setTimeout(function anim(){
+                                document.getElementById('6').style.animation = 'shaky 0s infinite';
+                                document.getElementById('7').style.animation = 'shaky 0s infinite';
+                                document.getElementById('8').style.animation = 'shaky 0s infinite';
+                                document.getElementById('9').style.animation = 'shaky 0s infinite';
+                                document.getElementById('10').style.animation = 'shaky 0s infinite';
+                                
+                            },1000);
+                            executed2 = false;
+                        }
+                    
+
+                        //THIS IS TO ANIMATE THIRD ROW IF IT'S ALL GREEN:
+                        if( document.getElementById('11').style.backgroundColor == 'rgb(46, 199, 92)'
+                        && document.getElementById('12').style.backgroundColor == 'rgb(46, 199, 92)'
+                        && document.getElementById('13').style.backgroundColor == 'rgb(46, 199, 92)'
+                        && document.getElementById('14').style.backgroundColor == 'rgb(46, 199, 92)'
+                        && document.getElementById('15').style.backgroundColor == 'rgb(46, 199, 92)'
+                        && executed3 == true){
+                            
+                            document.getElementById('11').style.animation = 'shaky 0.5s infinite';
+                            document.getElementById('12').style.animation = 'shaky 0.5s infinite';
+                            document.getElementById('13').style.animation = 'shaky 0.5s infinite';
+                            document.getElementById('14').style.animation = 'shaky 0.5s infinite';
+                            document.getElementById('15').style.animation = 'shaky 0.5s infinite';
+                            setTimeout(function anim(){
+                                document.getElementById('11').style.animation = 'shaky 0s infinite';
+                                document.getElementById('12').style.animation = 'shaky 0s infinite';
+                                document.getElementById('13').style.animation = 'shaky 0s infinite';
+                                document.getElementById('14').style.animation = 'shaky 0s infinite';
+                                document.getElementById('15').style.animation = 'shaky 0s infinite';
+                            },1000);
+                            executed3 = false;
+                        }
+
+                        //THIS IS TO ANIMATE FOURTH ROW IF IT'S ALL GREEN:
+                        if(document.getElementById('16').style.backgroundColor == 'rgb(46, 199, 92)'
+                        && document.getElementById('17').style.backgroundColor == 'rgb(46, 199, 92)'
+                        && document.getElementById('18').style.backgroundColor == 'rgb(46, 199, 92)'
+                        && document.getElementById('19').style.backgroundColor == 'rgb(46, 199, 92)'
+                        && document.getElementById('20').style.backgroundColor == 'rgb(46, 199, 92)'
+                        && executed4 == true){
+                            
+                            document.getElementById('16').style.animation = 'shaky 0.5s infinite';
+                            document.getElementById('17').style.animation = 'shaky 0.5s infinite';
+                            document.getElementById('18').style.animation = 'shaky 0.5s infinite';
+                            document.getElementById('19').style.animation = 'shaky 0.5s infinite';
+                            document.getElementById('20').style.animation = 'shaky 0.5s infinite';
+                            setTimeout(function anim(){
+                                document.getElementById('16').style.animation = 'shaky 0s infinite';
+                                document.getElementById('17').style.animation = 'shaky 0s infinite';
+                                document.getElementById('18').style.animation = 'shaky 0s infinite';
+                                document.getElementById('19').style.animation = 'shaky 0s infinite';
+                                document.getElementById('20').style.animation = 'shaky 0s infinite';
+                            },1000);
+                            executed4 = false;
+                        
+                        }
+
+                        //THIS IS TO ANIMATE FIFTH ROW IF IT'S ALL GREEN:
+                        if(document.getElementById('21').style.backgroundColor == 'rgb(46, 199, 92)'
+                        && document.getElementById('22').style.backgroundColor == 'rgb(46, 199, 92)'
+                        && document.getElementById('23').style.backgroundColor == 'rgb(46, 199, 92)'
+                        && document.getElementById('24').style.backgroundColor == 'rgb(46, 199, 92)'
+                        && document.getElementById('25').style.backgroundColor == 'rgb(46, 199, 92)'
+                        && executed5 == true){
+                            
+                            document.getElementById('21').style.animation = 'shaky 0.5s infinite';
+                            document.getElementById('22').style.animation = 'shaky 0.5s infinite';
+                            document.getElementById('23').style.animation = 'shaky 0.5s infinite';
+                            document.getElementById('24').style.animation = 'shaky 0.5s infinite';
+                            document.getElementById('25').style.animation = 'shaky 0.5s infinite';
+                            setTimeout(function anim(){
+                                document.getElementById('21').style.animation = 'shaky 0s infinite';
+                                document.getElementById('22').style.animation = 'shaky 0s infinite';
+                                document.getElementById('23').style.animation = 'shaky 0s infinite';
+                                document.getElementById('24').style.animation = 'shaky 0s infinite';
+                                document.getElementById('25').style.animation = 'shaky 0s infinite';
+                            },1000);
+                            executed5 = false;
+                        }
+                    }, 500);
+                    
+                    /////////////////////////////////////////
+                    
+                }
+        });    
+	    
+	    
         let count = 0;
         function checker(){
             guessed1 = [obj1[obj1Keys[0]],obj1[obj1Keys[1]],obj1[obj1Keys[2]],obj1[obj1Keys[3]],obj1[obj1Keys[4]]];
