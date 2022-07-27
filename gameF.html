@@ -11643,6 +11643,10 @@
             && document.getElementById('23').style.backgroundColor == 'rgb(46, 199, 92)'
             && document.getElementById('24').style.backgroundColor == 'rgb(46, 199, 92)'
             && document.getElementById('25').style.backgroundColor == 'rgb(46, 199, 92)'){
+		    setTimeout(()=>{
+                        sound2.play();
+                    },1500);
+		    
                     setTimeout(()=>{
                         document.getElementById('message2').showModal();
                     }, 3000);
