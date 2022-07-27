@@ -775,6 +775,7 @@
         let executed03 = true;
         let executed04 = true;
         let executed05 = true;
+	const sound = new Audio('ding.mp3');
         document.getElementById('ent').addEventListener('click', function soloAnimat(){
             setTimeout(()=>{
 
@@ -802,6 +803,7 @@
                             
                         },1000);
                         executed01 = false;
+			sound.play();
                     }
 
 
@@ -827,6 +829,7 @@
                             
                         },1000);
                         executed02 = false;
+			sound.play();
                     }
 
 
@@ -851,6 +854,7 @@
                             document.getElementById('15').style.animation = 'shaky 0s infinite';
                         },1000);
                         executed03 = false;
+			sound.play();
                     }
 
                     //THIS IS TO ANIMATE FOURTH ROW IF IT'S ALL GREEN:
@@ -874,6 +878,7 @@
                             document.getElementById('20').style.animation = 'shaky 0s infinite';
                         },1000);
                         executed04 = false;
+			sound.play();
 
                     }
 
@@ -898,6 +903,7 @@
                             document.getElementById('25').style.animation = 'shaky 0s infinite';
                         },1000);
                         executed05 = false;
+			sound.play();
                     }
             }, 500);        
         });    
@@ -936,6 +942,7 @@
                                 
                             },1000);
                             executed1 = false;
+		            sound.play();
                         }
                     
 
@@ -961,6 +968,7 @@
                                 
                             },1000);
                             executed2 = false;
+			    sound.play();
                         }
                     
 
@@ -985,6 +993,7 @@
                                 document.getElementById('15').style.animation = 'shaky 0s infinite';
                             },1000);
                             executed3 = false;
+			    sound.play();
                         }
 
                         //THIS IS TO ANIMATE FOURTH ROW IF IT'S ALL GREEN:
@@ -1008,6 +1017,7 @@
                                 document.getElementById('20').style.animation = 'shaky 0s infinite';
                             },1000);
                             executed4 = false;
+			    sound.play();
                         
                         }
 
@@ -1032,6 +1042,7 @@
                                 document.getElementById('25').style.animation = 'shaky 0s infinite';
                             },1000);
                             executed5 = false;
+			    sound.play();
                         }
                     }, 500);
                     
