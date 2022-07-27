@@ -11498,7 +11498,7 @@
             
             
         })
-        
+        const sound2 = new Audio('fireworks.mp3');
         window.addEventListener('keyup', (eventEnter1)=>{
             if(eventEnter1.key == 'Enter'){
                 if(guessNum != localStorage.getItem('guessNumF')){
@@ -11530,6 +11530,10 @@
                 && document.getElementById('23').style.backgroundColor == 'rgb(46, 199, 92)'
                 && document.getElementById('24').style.backgroundColor == 'rgb(46, 199, 92)'
                 && document.getElementById('25').style.backgroundColor == 'rgb(46, 199, 92)'){
+		    setTimeout(()=>{
+                        sound2.play();
+                    },1000);
+			
                     setTimeout(()=>{
                         document.getElementById('message2').showModal();
                     }, 3000);
