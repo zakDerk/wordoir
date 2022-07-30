@@ -1,0 +1,250 @@
+<html>
+	<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-H7TKV3VCF1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-H7TKV3VCF1');
+	</script>
+    <title>Wordoir.com - your daily 5 words puzzle</title>
+    <meta property="og:image" content="icon.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="500">
+    <meta name=viewport content='width=700'>
+		<meta name="description" content="How good are you in the English language? This is Wordoir, a guessing game where you try to find out the letters of
+    5 words, each word contains 5 non-repeating letters hidden.
+    This game is letter-connected, it helps you by showing similar letters of your guess in the other words' rows if your guess word matches them.
+    This word prompts 5 words to play each day, this game was inspired by the famous game wordle. Thanks to the genius Wardle, 
+    i was thinking at work one day and thought maybe I could use my humble Js experience to build my first official game.
+    So if you are interested in writing, reading, or word puzzles in general, try Wordoir.">
+    <link rel="icon" href="icon.png">
+    
+	</head>
+  <style>
+  body{
+	  text-align: center;
+    margin: auto;	
+	}
+	#start{
+	  color: rgb(255, 242, 0);
+	  font-size: 58px;
+	  font-family: monospace;
+	  border-radius: 6px;
+    display: inline-block;
+	  border: gray;
+	  background-color:blueviolet;
+    padding: 7px;
+	}
+	#start:hover{
+	  background-color: rgb(1, 82, 1);
+	  color: white;
+	}
+	#frontier{
+	   text-align: center;
+	   margin: 70px;
+	}
+    #ruleList,#list{
+		font-family: monospace;
+		font-size: 25px;
+		color:rgb(255, 255, 255);
+		text-align: left;
+		font-weight: solid;
+    margin: 0px;
+
+	}
+	#rules::backdrop{
+		background: linear-gradient(45deg, red, blueviolet);
+		opacity: .3;
+	}
+	#rules{
+		background-color: darkgoldenrod;
+		text-align: left;
+		margin-top: 20px;
+		box-shadow: 0 0 1 1;
+		max-width: 800px;
+    border-radius: 10px;
+    max-width: 800px;
+    max-height: 600px;
+	}
+    #span1{
+		font-weight: bold;
+        color:rgb(34, 34, 34);
+	}
+    #close{
+		font-size: 33px;
+		background-color: rgb(255, 255, 255);
+    border: 0px;
+	}
+    #ruleShower:hover{
+        color:aliceblue;
+        background-color: darkgoldenrod;
+    }
+    #ruleShower{
+        color: rgb(0, 0, 0);
+        font-size: 30px;
+        font-family: monospace;
+        background-color:rgb(255, 228, 118);
+        border: 0px;
+        border-radius: 9px;
+    }
+    #header{
+      margin: 0px;
+      color: rgb(255, 255, 255);
+      font-size: 45px;
+      font-family: monospace;
+      font-weight:bolder;
+    }
+    #ET{
+      margin: 0px;
+    }
+    .alignleft{
+      text-align: center;
+      display: inline-block;
+      width: 128px;
+      height: 100px;
+    }
+    #english{
+      color: rgb(255, 255, 255);
+      font-size: 31px;
+      font-family: monospace;
+      border-radius: 6px;
+      background-color:rgb(17, 0, 255);
+      text-align: center;
+      padding-bottom: 5px;
+	  }
+    #english:hover{
+      background-color: rgb(255, 2, 2);
+
+    }
+    
+    /*the navigation bar*/
+    #image{
+        margin-top: 50px;
+    }
+    .topnav {
+    position: relative;
+    overflow: hidden;
+    background-color: #333;
+    }
+
+    .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 31px;
+    font-family: monospace;
+    }
+
+    .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+    }
+
+    .topnav a.active {
+    background-color: rgb(53, 235, 108);
+    color: white;
+    }
+
+    .topnav-centered a {
+    float: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    }
+
+    .topnav-right {
+    float: right;
+    }
+
+    /* Responsive navigation menu (for mobile devices) */
+    @media screen and (max-width: 600px) {
+    .topnav a, .topnav-right {
+        float: none;
+        display: block;
+    }
+    
+    .topnav-centered {
+        position: relative;
+        padding-left: 0%;
+        padding-right: 0%;
+        transform: none;
+        
+    }
+    }
+	
+  </style>
+  <body style="background-image: url('back02.jpg');">
+
+    <dialog id="rules">
+        <p id="ruleList">Comment jouer Wordoir:</p>
+        <p id="ruleList">Pour gagner ce puzzle quotidien, essayez de deviner tous les 5 mots cachés. Voici comment:</p>
+        <li id="list">Choisissez une ligne à taper en la cliquant et devinez le mot de 5 lettres(lettres sont pas répétés).</li>
+        <li id="list">Les bonnes lettres apparaîtront avec un fond vert.</li>
+        <li id="list">Pour vous aider, si les lettres du mot que vous avez deviné</br>
+        sont communes avec d'autres mots sur la grille, ces lettres apparaîtront également</li>
+        <li id="list">Vert signifie juste, mais même si certaines des lettres sont affichées,
+          vous devez taper un mot complet de 5 lettres sans répétition de lettres à chaque supposition,
+        regarder <span id="span1">'supposition affichée ici:'</span> au-dessus de la grille.</li>
+        <p id="ruleList">Un bon conseil serait d'essayer vos suppositions sur différentes lignes!</p>
+        <p id="ruleList">Bonne chance</p>
+        </br>
+        <button id="close" onclick="closer()">Fermer</button>
+
+    </dialog>
+
+    <!-- Top navigation -->
+    <div class="topnav">
+
+      <!-- Centered link -->
+      <div class="topnav-centered">
+      <a href="gameF.html"><image class="image" width="250px" src="logo.png"></image></a>
+      </div>
+      
+      <!-- Left-aligned links (default) -->
+      <a href="about.html">About</a>
+      <!-- <a href="#news">News</a>-->
+      
+      <!-- Right-aligned links -->
+      <div class="topnav-right">
+      <a href="contact.html">Contact</a>
+      </div>
+  
+  </div>
+    </br></br></br>
+	  <a href='gameF.html' ><button id = 'start' >Commencer</button></a>
+    </br></br></br></br>
+    <button id="ruleShower" onclick="opener()" >Comment jouer</button>
+    </br></br></br></br>
+    <a href="index.html"><button id="english">Play in English <image src="en.png" width="48px" id="usa"></image> Jouer en Anglais</button></a> 
+    </br></br></br>
+    <a href='https://play.google.com/store/apps/details?id=com.wWordoir_15723284' ><image src="GP.jpg" width="310px"></image></a>
+    </br></br></br>
+    <iframe src="//rcm-na.amazon-adsystem.com/e/cm?o=1&p=12&l=ur1&category=amzn_firetv_eg_101618&banner=07Z1A8KKG3NGABM31PG2&f=ifr&linkID=f857373f64f2d8eeaa60686b35df5dbb&t=wordoir-20&tracking_id=wordoir-20" width="300" height="250" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0" sandbox="allow-scripts allow-same-origin allow-popups allow-top-navigation-by-user-activation"></iframe>
+    <iframe src="//rcm-na.amazon-adsystem.com/e/cm?o=1&p=290&l=ur1&category=grocery&banner=1ANC0ZSSABKB1KN14E02&f=ifr&linkID=723e8609bc6182332a487617c3f1fa11&t=wordoir-20&tracking_id=wordoir-20" width="320" height="250" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0" sandbox="allow-scripts allow-same-origin allow-popups allow-top-navigation-by-user-activation"></iframe>
+   
+    </br></br></br></br></br></br>
+    <h1 id="header">Brought to you by:</h1>
+    <image id="ET" src="ET.gif" width="300px"></image>
+
+    <script>
+		function closer(){
+			document.getElementById('rules').close();
+            //document.getElementById('newGame').showModal(); 
+		}
+        function opener(){
+			document.getElementById('rules').showModal();
+		}
+	  
+	    
+	    
+	</script>
+  
+	
+  </body>
+</html>
