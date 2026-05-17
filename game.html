@@ -98,9 +98,6 @@
         <div class="popup-note">This message will stay until you close it.</div>
       </div>
     </div>
-    <div class="actions">
-      <button id="submitBtn" class="submit">ENT</button>
-    </div>
   </main>
   <div class="keyboard-wrap">
     <div id="keyboard" class="kb"></div>
@@ -523,7 +520,6 @@
       if (state.periodId !== currentPeriodId()) startGame();
       else if (isComplete()) setProgressStatus();
     }
-    document.getElementById('submitBtn').addEventListener('click', submitGuess);
     document.getElementById('closePopup').addEventListener('click', () => {
       state.popupDismissed = true;
       saveGame();
