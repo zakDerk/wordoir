@@ -512,51 +512,12 @@
       saveGame();
     }
 
-    function forceNewGame() {
-      // pick 6 random distinct words from wordPool
-      const pool = [...new Set(wordPool.map(w => w.toUpperCase()))];
-      const chosen = [];
-      while (chosen.length < ROWS && pool.length) {
-        const idx = Math.floor(Math.random() * pool.length);
-        chosen.push(pool.splice(idx, 1)[0]);
-      }
-      if (chosen.length === ROWS) {
-        state.answers = chosen;
-        state.periodId = currentPeriodId() + '-manual-' + Date.now();
-        state.selectedRow = 0;
-        state.submittedRow = 0;
-        state.turns = 0;
-        state.guesses = [];
-        state.completedAt = null;
-        state.solved = new Array(ROWS).fill(false);
-        state.locked = new Array(ROWS).fill(null).map(() => ['', '', '', '', '']);
-        state.hints = new Array(ROWS).fill(null).map(() => ['', '', '', '', '']);
-        state.drafts = new Array(ROWS).fill(null).map(() => ['', '', '', '', '']);
-        state.cursors = new Array(ROWS).fill(0);
-        state.flash = { row: -1, col: -1 };
-        state.waveRows = new Set();
-        state.display = new Array(ROWS).fill(null).map(() => ({ letters:['','','','',''], colors:['','','','',''] }));
-        state.popupDismissed = false;
-        state.themeName = '';
-        saveGame();
-        render();
-        setProgressStatus();
-        showToast('New set generated. Good luck!');
-      }
-    }
     function startGame() {
       if (!loadSavedGame()) resetProgress();
       else {
         render();
         setProgressStatus();
       }
-      // If URL contains ?forceNew=1, generate a fresh random set now.
-      try {
-        const params = new URLSearchParams(window.location.search);
-        if (params.get('forceNew') === '1') {
-          forceNewGame();
-        }
-      } catch (e) {}
     }
     function refreshPeriod() {
       if (state.periodId !== currentPeriodId()) startGame();
