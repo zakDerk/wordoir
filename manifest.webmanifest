@@ -1,0 +1,23 @@
+{
+  "name": "Wordoir",
+  "short_name": "Wordoir",
+  "description": "A 6-row word puzzle game with linked letter hints.",
+  "start_url": "./game.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#101112",
+  "theme_color": "#101112",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
