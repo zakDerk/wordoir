@@ -18,8 +18,8 @@
     .title { font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
     .wrap { width:min(760px,95vw); margin:14px auto 20px; padding-bottom:120px; display:flex; flex-direction:column; align-items:center; }
     .status { display:none; color:var(--muted); margin:0 0 12px; font-size:.95rem; }
-    .toast { min-height:24px; margin:0 0 10px; font-weight:700; color:#121213; display:flex; align-items:center; justify-content:center; }
-    .toast.show { background:#f2f2f2; border-radius:8px; padding:8px 10px; }
+    .toast { min-height:34px; margin:0 0 10px; padding:8px 10px; font-weight:700; color:#121212; display:flex; align-items:center; justify-content:center; opacity:0; visibility:hidden; transition: opacity .2s ease, visibility .2s ease; }
+    .toast.show { background:#f2f2f2; border-radius:8px; opacity:1; visibility:visible; }
     .popup { position:fixed; bottom:14px; left:50%; transform:translateX(-50%); background:rgba(15,15,17,.98); border:1px solid #2a2a2d; border-radius:16px; padding:14px 16px; max-width:min(560px,94vw); box-shadow:0 18px 60px rgba(0,0,0,.35); z-index:50; display:grid; gap:10px; color:var(--text); }
     .popup.hidden { display:none; }
     .popup-header { display:flex; justify-content:space-between; align-items:center; gap:12px; }
@@ -27,14 +27,16 @@
     .popup-close { background:transparent; border:none; color:var(--muted); font-size:1.14rem; cursor:pointer; padding:6px; border-radius:8px; }
     .popup-body { display:grid; gap:6px; font-size:.95rem; }
     .popup-countdown { font-weight:700; color:var(--green); }
-    .board { background:var(--panel); border:1px solid #2a2a2d; border-radius:10px; padding:10px; display:grid; gap:8px; }
+    .board { background:var(--panel); border:1px solid #2a2a2d; border-radius:10px; padding:10px; display:grid; gap:4px; }
     .row { display:grid; grid-template-columns:repeat(5,minmax(46px,1fr)); gap:6px; padding:6px; border-radius:8px; border:1px solid transparent; cursor:pointer; }
     .row.active { border-color:var(--active); background:rgba(47,116,255,.12); }
     .row.solved { outline:1px solid var(--green); }
-    .tile { aspect-ratio:1/1; border:2px solid var(--border); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.2rem; text-transform:uppercase; }
+    .tile { aspect-ratio:1/1; border:2px solid var(--border); background:#101112; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.44rem; text-transform:uppercase; perspective: 1000px; }
     .tile.pending { border-color:#73757a; }
     .tile.flash { animation: pulse .16s ease-in-out 0s 1; }
     .tile.wave { animation: wave .42s ease-in-out both; }
+    .fade-correct { background:#101112; border-color:#101112; }
+
     @keyframes pulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.12); }
@@ -43,6 +45,13 @@
     @keyframes wave {
       0%, 100% { transform: translateY(0); }
       45% { transform: translateY(-12px); }
+    }
+    .fade-correct.present {
+      animation: yellowPhase 2s ease forwards;
+    }
+    @keyframes yellowPhase {
+      0% { background:#101112; border-color:#101112; }
+      100% { background:var(--yellow); border-color:var(--yellow); }
     }
     .correct { background:var(--green); border-color:var(--green); }
     .present { background:var(--yellow); border-color:var(--yellow); }
@@ -57,14 +66,14 @@
     .kb-row.r1 { grid-template-columns:repeat(10,minmax(0,1fr)); }
     .kb-row.r2 { grid-template-columns:repeat(9,minmax(0,1fr)); padding:0 clamp(4px,4vw,18px); }
     .kb-row.r3 { grid-template-columns:1.35fr repeat(7,minmax(0,1fr)) 1.35fr; }
-    .k { min-height:40px; border:none; border-radius:6px; background:var(--key); color:#fff; font-weight:700; box-sizing:border-box; min-width:0; padding:0 3px; font-size:.8rem; }
+    .k { min-height:48px; border:none; border-radius:6px; background:var(--key); color:#fff; font-weight:700; box-sizing:border-box; min-width:0; padding:0 3px; font-size:1.27rem; }
     .k.correct { background:var(--green); border-color:var(--green); color:#fff; }
     .k.present { background:var(--yellow); border-color:var(--yellow); color:#121212; }
     .k.absent { background:var(--gray); border-color:var(--gray); color:#fff; }
-    .k.wide { font-size:.84rem; }
+    .k.wide { min-height:38px; font-size:1.056rem; padding:0 2px; }
     @media (max-width: 560px) {
       .wrap { width:96vw; margin-top:10px; padding-bottom:150px; }
-      .tile { font-size:1.05rem; }
+      .tile { font-size:1.26rem; }
       .row { gap:5px; padding:4px; }
       .keyboard-wrap { padding-inline:3px; }
       .kb { gap:3px; max-width:360px; }
@@ -72,8 +81,8 @@
       .kb-row.r1 { grid-template-columns:repeat(10,1fr); }
       .kb-row.r2 { grid-template-columns:repeat(9,1fr); padding:0 5px; }
       .kb-row.r3 { grid-template-columns:1fr repeat(7,1fr) 1fr; }
-      .k { min-width:0; min-height:34px; padding:0 1px; font-size:.65rem; }
-      .k.wide { font-size:.68rem; }
+      .k { min-width:0; min-height:40px; padding:0 1px; font-size:1.03rem; }
+      .k.wide { min-height:32px; font-size:0.864rem; padding:0 2px; }
     }
   </style>
 </head>
@@ -93,9 +102,8 @@
         <button id="closePopup" class="popup-close" aria-label="Close">×</button>
       </div>
       <div class="popup-body">
-        <div class="popup-message">Nice work! Next 6 words in <span class="popup-countdown">0m</span>.</div>
-        <div class="popup-theme" style="display:none;font-weight:700;color:var(--muted);"></div>
-        <div class="popup-note">This message will stay until you close it.</div>
+        <div class="popup-theme" style="font-weight:700;color:var(--muted);"></div>
+        <div class="popup-message">Next 6 words in <span class="popup-countdown">0m</span>.</div>
       </div>
     </div>
   </main>
@@ -108,13 +116,14 @@
     const WORD_LEN = 5;
     const STORAGE_PREFIX = 'wordoirGameStateV2:';
     const GAME_TIME_ZONE = 'America/New_York';
-    const wordPool = ['apple','allot','array','belle','bloom','boost','caddy','civic','comma','daddy','eerie','easel','eaten','eject','fella','flood','gauge','gloss','happy','hilly','hobby','issue','jelly','kitty','llama','loose','mamma','mimic','nanny','oddly','offer','poppy','queue','radar','sassy','scoot','silly','tabby','teeth','tweet','udder','vivid','waltz','woozy','xenon','yummy','zappy','adore','after','agent','agile','align','amber','angle','argue','arise','badge','basic','beach','beard','begin','blame','blend','blink','board','brain','brave','brick','bring','broad','brown','cabin','cable','carry','chain','charm','chess','chill','chose','clean','clear','climb','close','cloud','coast','color','count','cover','craft','crane','cream','crown','daily','dance','doubt','draft','dream','dress','drink','drive','earth','elite','enjoy','entry','equal','exact','faith','false','fancy','field','flame','frame','fresh','front','ghost','glide','glory','grace','grade','grand','grant','green','grind','group','guard','habit','heart','house','ideal','image','index','joint','judge','knock','known','label','learn','light','limit','liver','lodge','lucky','magic','major','march','match','maybe','metal','might','model','money','mount','music','never','noble','noise','north','novel','ocean','order','other','paint','panel','peace','phone','piece','pilot','place','plain','point','power','press','price','pride','prime','print','prize','proof','quick','quiet','raise','reach','ready','refer','right','rival','river','rough','round','route','royal','scale','scene','scope','score','sense','serve','shape','share','sheet','shelf','shift','shine','shirt','shock','short','sight','skill','smart','smile','solid','solve','sound','south','spare','speak','speed','spice','spite','sport','staff','stage','stand','start','state','steam','steel','stick','stone','store','storm','story','style','sugar','sweat','sweep','sweet','table','teach','thank','their','theme','there','thing','throw','tight','tired','today','topic','total','touch','tower','track','trade','train','trend','trial','trust','under','union','unity','upper','value','video','visit','voice','watch','water','white','whole','woman','world','worry','worth','write','wrong','young','yours'];
+    const wordPool = ['apple','allot','array','belle','bloom','boost','caddy','civic','comma','daddy','eerie','easel','eaten','eject','fella','flood','gauge','gloss','happy','hilly','hobby','issue','jelly','kitty','llama','loose','mamma','mimic','nanny','oddly','offer','poppy','queue','radar','sassy','scoot','silly','tabby','teeth','tweet','udder','vivid','waltz','woozy','xenon','yummy','zappy','adore','after','agent','agile','align','amber','angle','argue','arise','badge','basic','beach','beard','begin','blame','blend','blink','board','brain','brave','brick','bring','broad','brown','cabin','cable','carry','chain','charm','chess','chill','chose','clean','clear','climb','close','cloud','coast','color','count','cover','craft','crane','cream','crown','daily','dance','doubt','draft','dream','dress','drink','drive','earth','elite','enjoy','entry','equal','exact','faith','false','fancy','field','flame','frame','fresh','front','ghost','glide','glory','grace','grade','grand','grant','green','grind','group','guard','habit','heart','house','ideal','image','index','joint','judge','knock','known','label','learn','light','limit','liver','lodge','lucky','magic','major','march','match','maybe','metal','might','model','money','mount','music','never','noble','noise','north','novel','ocean','order','other','paint','panel','peace','phone','piece','pilot','place','plain','point','power','press','price','pride','prime','print','prize','proof','quick','quiet','raise','reach','ready','refer','right','rival','river','rough','round','route','royal','scale','scene','scope','score','sense','serve','shape','share','sheet','shelf','shift','shine','shirt','shock','short','sight','skill','smart','smile','solid','solve','sound','south','spare','speak','speed','spice','spite','sport','staff','stage','stand','start','state','steam','steel','stick','stone','store','storm','story','style','sugar','sweat','sweep','sweet','table','teach','thank','their','theme','there','thing','throw','tight','tired','today','topic','total','touch','tower','track','trade','train','trend','trial','trust','under','union','unity','upper','value','video','visit','voice','watch','water','white','whole','woman','world','worry','worth','write','wrong','young','yours','balls','trees','hands','cakes','shoes','doors','rooms','books','games','farms','hills','lawns','miles','notes','songs','lamps','roads','stars','winds','fires','rings','boats','parks','rooms','makes','works','uses','wants','shows','grows','boils','stops','bakes','skips','grabs','opens','edits','moves','keeps','meets','saves','plans','hires','picks','bends','feeds','sends','lends','signs','pours','seals','tours','leaks','seeks','hides','rises','falls'];
     const validGuesses = new Set([...(window.WORDLE_ALLOWED_GUESSES || []), ...wordPool]);
-    const state = { periodId: '', answers: [], selectedRow: 0, submittedRow: 0, turns: 0, guesses: [], completedAt: null, solved: new Array(ROWS).fill(false), locked: new Array(ROWS).fill(null).map(() => ['', '', '', '', '']), hints: new Array(ROWS).fill(null).map(() => ['', '', '', '', '']), drafts: new Array(ROWS).fill(null).map(() => ['', '', '', '', '']), cursors: new Array(ROWS).fill(0), flash: { row: -1, col: -1 }, waveRows: new Set(), display: new Array(ROWS).fill(null).map(() => ({ letters:['','','','',''], colors:['','','','',''] })), popupDismissed: false, themeName: '' };
+    const state = { periodId: '', answers: [], selectedRow: 0, submittedRow: 0, turns: 0, guesses: [], completedAt: null, solved: new Array(ROWS).fill(false), locked: new Array(ROWS).fill(null).map(() => ['', '', '', '', '']), hints: new Array(ROWS).fill(null).map(() => ['', '', '', '', '']), drafts: new Array(ROWS).fill(null).map(() => ['', '', '', '', '']), cursors: new Array(ROWS).fill(0), flash: { row: -1, col: -1 }, waveRows: new Set(), display: new Array(ROWS).fill(null).map(() => ({ letters:['','','','',''], colors:['','','','',''] })), popupDismissed: false, themeName: '', greenPhase: new Set() };
     const statusEl = document.getElementById('status');
     const toastEl = document.getElementById('toast');
     const boardEl = document.getElementById('board');
     let toastTimer = null;
+    let greenPhaseTimer = null;
     function showToast(msg) {
       toastEl.textContent = msg;
       toastEl.classList.add('show');
@@ -243,6 +252,10 @@
             else if (isSubmittedRow && (hiddenKnownYellow || hasColor === 'absent')) tile.classList.add('absent');
             else if (hideClue) tile.classList.add('absent');
             else if (hasColor && hasColor !== 'absent') tile.classList.add(hasColor);
+            if (state.greenPhase.has(`${r}:${c}`) && r !== state.selectedRow && hasColor === 'present') {
+              tile.classList.add('fade-correct');
+              tile.style.animationDelay = (c * 120) + 'ms';
+            }
           }
           if (state.flash.row === r && state.flash.col === c) tile.classList.add('flash');
           if (state.waveRows.has(r)) {
@@ -323,7 +336,6 @@
         drafts: state.drafts,
         cursors: state.cursors,
         display: state.display,
-        popupDismissed: state.popupDismissed,
         themeName: state.themeName || ''
       }));
     }
@@ -341,8 +353,9 @@
       state.drafts = saved.drafts || new Array(ROWS).fill(null).map(() => ['', '', '', '', '']);
       state.cursors = saved.cursors || new Array(ROWS).fill(0);
       state.display = saved.display || new Array(ROWS).fill(null).map(() => ({ letters:['','','','',''], colors:['','','','',''] }));
-      state.popupDismissed = saved.popupDismissed || false;
+      state.popupDismissed = false;
       state.themeName = saved.themeName || '';
+      state.greenPhase = new Set();
     }
     function loadSavedGame() {
       try {
@@ -408,11 +421,21 @@
       if (!/^[A-Z]{5}$/.test(guess)) { showToast('Not enough letters.'); return setStatus('Type exactly 5 letters.'); }
       if (!validGuesses.has(guess.toLowerCase())) { showToast('Not a word.'); return setStatus('Try a real 5-letter word.'); }
       const newlySolvedRows = [];
+      const previousDisplay = state.display.map(d => ({ letters:[...d.letters], colors:[...d.colors] }));
+      state.greenPhase.clear();
       state.submittedRow = row;
       for (let r = 0; r < ROWS; r++) {
         const colors = evaluate(state.answers[r], guess);
         state.display[r] = { letters: guess.split(''), colors };
-        for (let i = 0; i < WORD_LEN; i++) if (colors[i] === 'correct') state.locked[r][i] = guess[i];
+        for (let i = 0; i < WORD_LEN; i++) {
+          if (colors[i] === 'correct') {
+            state.locked[r][i] = guess[i];
+          } else if (colors[i] === 'present') {
+            if (r !== row && previousDisplay[r].colors[i] !== 'present') {
+              state.greenPhase.add(`${r}:${i}`);
+            }
+          }
+        }
         if (guess === state.answers[r] && !state.solved[r]) {
           state.solved[r] = true;
           newlySolvedRows.push(r);
@@ -428,6 +451,10 @@
         setTimeout(() => { state.waveRows.clear(); render(); }, 850);
       }
       render();
+      if (state.greenPhase.size) {
+        clearTimeout(greenPhaseTimer);
+        greenPhaseTimer = setTimeout(() => { state.greenPhase.clear(); render(); greenPhaseTimer = null; }, 2600);
+      }
       if (isComplete() && !state.completedAt) {
         state.completedAt = Date.now();
         showToast('Amazing!');
@@ -446,7 +473,7 @@
         if (countdown) countdown.textContent = formatDuration(timeUntilNextPeriod());
         const themeEl = popup.querySelector('.popup-theme');
         if (themeEl) {
-          if (state.themeName) { themeEl.textContent = 'Theme: ' + state.themeName; themeEl.style.display = 'block'; }
+          if (state.themeName) { themeEl.textContent = 'The theme was ' + state.themeName + '.'; themeEl.style.display = 'block'; }
           else { themeEl.style.display = 'none'; }
         }
         return;
